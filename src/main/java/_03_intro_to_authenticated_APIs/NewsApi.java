@@ -25,7 +25,7 @@ public class NewsApi {
     //API key is received through creating an account on the web site.
     private static final String baseUrl = "http://newsapi.org/v2/everything";
     private static final String apiKey = "59ac01326c584ac0a069a29798794bec";
-
+    
     //We will use WebClient to make the request
     private WebClient webClient;
 
