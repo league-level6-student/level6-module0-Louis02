@@ -18,8 +18,10 @@ public class JeopardyRunner {
         //increments by 100
         for(int i = 100;i<=1000; i+=100) {
         	if(i==700||i==900) {
-        		jeopardyApi.getClue(i);
-        		String question = 
+        		Clue clue = jeopardyApi.getClue(i);
+        		String question = clue.getQuestion();
+        		String answer = clue.getAnswer();
+        		String title = clue.getCategory().getTitle();
         	}
         }
             //3. If i == 700 or i == 900, continue;
@@ -33,7 +35,7 @@ public class JeopardyRunner {
 
             //7. Save the title in a String variable
             //note that this is part of the Category object
-
+        
             //8. Use a JOptionPane to display the question.
             //You can set the title of the JOptionPane to the question title.
 
