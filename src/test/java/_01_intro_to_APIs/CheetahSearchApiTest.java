@@ -38,7 +38,7 @@ class CheetahSearchApiTest {
     WebClient.ResponseSpec responseSpecMock;
 
     @Mock
-    Mono<Result[]> resultMonoMock;
+    Mono<Result[]> resultMonoMock; 
 
     @BeforeEach
     void setUp() {

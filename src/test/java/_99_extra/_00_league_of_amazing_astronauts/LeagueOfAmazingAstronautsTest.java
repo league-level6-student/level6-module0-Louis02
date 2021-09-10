@@ -19,44 +19,59 @@ class LeagueOfAmazingAstronautsTest {
 
     LeagueOfAmazingAstronauts underTest = new LeagueOfAmazingAstronauts();
 
+    @Mock
+    Astronaut astro;
+    
+    @Mock
+    Rocketship rocket;
+    
     @BeforeEach
     void setUp() {
-
+    	MockitoAnnotations.openMocks(this);
+    	underTest.setRocketship(rocket);
     }
 
     @Test
     void itShouldPrepareAstronaut() {
         //given
+    	when(astro.isTrained()).thenReturn(true);
+    	underTest.prepareAstronaut(astro);
 
         //when
-
+    	
         //then
+    	verify(astro, times(1)).train();
+    	verify(rocket, times(1)).loadOccupant(astro);
+    	
     }
 
     @Test
     void itShouldLaunchRocket() {
         //given
-
+    	when(rocket.isLoaded()).thenReturn(true);
         //when
-
+    	underTest.launchRocket("Mars");
         //then
+    	verify(rocket, times(1)).launch();
     }
 
 
     @Test
     void itShouldThrowWhenDestinationIsUnknown() {
         //given
-
+    	when(rocket.isLoaded()).thenReturn(true);
         //when
-        //then
+        //then	
+    	assertThatThrownBy(() -> underTest.launchRocket("12"));
     }
 
     @Test
     void itShouldThrowNotLoaded() {
         //given
-
+    	when(rocket.isLoaded()).thenReturn(false);
         //when
         //then
+    	assertThatThrownBy(()->underTest.launchRocket("Mars"));
 
     }
 }
